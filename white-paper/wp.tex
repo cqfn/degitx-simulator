@@ -1,0 +1,98 @@
+\documentclass[12pt,oneside]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{float}
+\usepackage[bottom]{footmisc}
+\usepackage{bookmark}
+\usepackage{microtype}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{mdframed}
+\usepackage{setspace}
+\usepackage{pgfplots}
+\usepackage{graphicx}
+\usepackage{fancyvrb}
+\usepackage[absolute]{textpos}\TPGrid{16}{16}
+\usepackage{tikz}
+  \usetikzlibrary{shapes}
+  \usetikzlibrary{arrows.meta}
+  \usetikzlibrary{arrows}
+  \usetikzlibrary{shadows}
+  \usetikzlibrary{trees}
+  \usetikzlibrary{fit}
+  \usetikzlibrary{calc}
+  \usetikzlibrary{positioning}
+  \usetikzlibrary{decorations.pathmorphing}
+\usepackage{./tikz-uml}
+\usepackage{everypage}
+  \AddEverypageHook{
+    \begin{textblock}{0.5}[0,0](0,0)
+      \tikz \node[fill=myred,minimum width=0.5\TPHorizModule,minimum height=16\TPVertModule] {};
+    \end{textblock}
+    \begin{textblock}{0.125}[0,0](0.5,0)
+      \tikz \node[fill=myblack,inner sep=0, minimum width=0.125\TPHorizModule,minimum height=16\TPVertModule] {};
+    \end{textblock}
+  }
+\usepackage{xcolor}
+  \definecolor{firebrick}{HTML}{B22222}
+  \definecolor{myred}{HTML}{CF0A2C}
+  \definecolor{myblack}{HTML}{232527}
+\newcommand\dd[1]{\colorbox{gray!30}{\texttt{#1}}}
+\usepackage{hyperref}
+  \hypersetup{colorlinks=true,allcolors=blue!40!black}
+\setlength{\topskip}{6pt}
+\setlength{\parindent}{0pt} % indent first line
+\setlength{\parskip}{6pt} % before par
+% \let\oldsection\section\renewcommand\section{\newpage\oldsection}
+\date{\small\today}
+\title{%
+  DRAFT: DeGitX simulator \\
+  \colorbox{firebrick}{\small\sffamily\color{white}{White Paper}}}
+\usepackage[style=authoryear,sorting=nyt,backend=biber,
+  hyperref=true,abbreviate=true,
+  maxcitenames=1,maxbibnames=1]{biblatex}
+  \renewbibmacro{in:}{}
+  \addbibresource{books.bib}
+\tikzset{node distance=1.6cm, auto, every text node part/.style={align=center, font={\sffamily\small}}}
+\tikzstyle{block} = [draw=myblack, fill=white, inner sep=0.3cm, outer sep=0.1cm, thick]
+\tikzstyle{ln} = [draw, ->, very thick, arrows={-triangle 90}, every text node part/.append style={font={\sffamily\scriptsize}}]
+
+% custom commands
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\todo}[1]{\textcolor{red}{TODO: #1}}
+
+\begin{document}
+\raggedbottom
+
+\maketitle
+\begin{abstract}
+  \todo{abstract}
+\end{abstract}
+
+% \onehalfspace
+
+\section{Statement}
+
+\section{Requirements}
+\label{sec:requirements}
+
+\subsection{Features}
+\label{sec:features}
+
+The most critical
+\href{https://en.wikipedia.org/wiki/Non-functional_requirement}{Non-functional requirements}
+are:
+
+\todo{add non-functional requirements}
+
+\subsection{Functional Requirements}
+\label{sec:nfr}
+
+The most important \href{https://en.wikipedia.org/wiki/Functional_requirement}{functional requirements} are:
+
+\todo{add functional requirements}
+
+\section{Compare to other solutions}
+\todo{add other solutions}
+
+\printbibliography%
+\end{document}
