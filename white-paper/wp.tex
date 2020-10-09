@@ -71,7 +71,17 @@ DeGitX Simulator is the tool which emulates environment where distributed softwa
 % \onehalfspace
 
 \section{Statement}
-IT industry moves from centralized to cloud architecture, where information stored in distributed copies and synchronized frequently. There is a problem to evaluate whether the chosen model is suitable before start expensive development. The solution for this problem is the Model Behavior Simulator. Simulation software is used by engineers to imitate a real-world phenomenon before manufacturing the engineered product.
+IT industry moves from centralized to cloud architecture, where information stored in distributed copies and synchronized frequently. There is a problem to evaluate whether the chosen model is suitable before start expensive development. 
+
+\section{Solution}
+The solution for this problem is the Model Behavior Simulator. Simulation software is used by engineers to imitate a real-world phenomenon before manufacturing the engineered product. Simulator allows to try different ways of implementation and measure results between each other. The model achieved a result, which better fits expected metrics may be chosen as preferable.
+The benefits of such approach are obvious:
+\begin{itemize}
+    \item Lower cost of development;
+    \item Shorter time to spend on development;
+    \item Predictable result of system's work in the real world.
+\end{itemize}
+Solution could simulate users' work with Decentralized GitHub repositories, and system behavior based on limitations and exceptional events.
 
 \section{Requirements}
 \label{sec:requirements}
@@ -141,12 +151,11 @@ Every client can has its own activity profile (push/fetch requests per time, rea
 \subsubsection{Output data}
 \label{sec:output}
 
-The Simulator must answer the question "Is the given algorithm suitable for tested topology of network?"
+The Simulator must answer the question "Is the given model suitable for tested topology of network?"
 
 System must log all important steps what was happening ordered by timestamps. FrontEnd side should allow to see history at any moment and provide analysis tools.
-\todo{Detailing needed here or in Architecture section~\ref{sec:arch}}
 
-Algorithm must measure timings for such operations as push and pull etc which are most used by DeGitX users.
+Algorithm must measure timings for such operations as push,  pull, merge, etc, which are most used by DeGitX users.
 
 The main metrics are:
 \begin{itemize}
@@ -201,17 +210,17 @@ It's a proprietary software that can't be used for free (except education propos
 
 Simulator creates a graph of physical nodes where placed distributed github repositories. Every repository is placed on some number (depending on settings) of physical nodes.
 
-All nodes for every repository must be connected, but not mandatory directly. Update the repository on one node must 
+All nodes for every repository must be connected, but not mandatory directly. Update the repository on one node must update other nodes according to chosen algorithm (part of model is testing).
 
-System must have an Event-Engine to simulate random environment processes and emulate payload (from mocked RPC requests of DeGitX)
+System must have an Event-Engine to simulate random environment processes and emulate payload (from mocked RPC requests of DeGitX).
 
 System contents the following modules:
 \begin{description}
     \item[Graph Generator.]
-    Based on predefined settings, module should create bi-directional graph. Nodes are the physical servers which contain one or more repositories. Each node has own parameters, which must be set based on settings with some minor random delta:
+    Based on predefined settings, module should create bi-directional graph. Nodes are the physical servers which contain one or more repositories. Node state must be set based on settings with some minor random delta:
     \begin{itemize}
-        \item Read operation speed    (MB/sec)
-        \item Write delay (Mb/sec)
+        \item Read operation speed (MB/sec)
+        \item Write operation speed (Mb/sec)
         \item State (Active/Down)
     \end{itemize}
     Edges of graph are routes from one Node to another. They must have their own configuration properties:
@@ -219,10 +228,8 @@ System contents the following modules:
         \item Throughput (max Mb/sec)
         \item State (Active/Down)
     \end{itemize}
-    Parameters for nodes and edges must be set with given distribution method. (Normal, random, etc)
-    
-    \item[Repository.]
-    Logic component, represents github repository instance. Should be distributed by at least for three Nodes, connected with one sub-graph. Nodes must be connected either directly or not.
+    Node state must be set with given distribution method. (Normal, random, etc)\par
+    Repository is a logic component, represents GitHub repository instance. Should be distributed by at least three Nodes, connected with one sub-graph. Nodes must be connected either directly or not.
     
     \item[Simulator Engine.]
     Based on predefined data and generated graph simulate users' activity and network infrastructure behavior, and log all events. Simulator must provide implementations of
