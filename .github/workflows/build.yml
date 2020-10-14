@@ -25,4 +25,4 @@ jobs:
           restore-keys: |
             build-cache-gradle-
       - name: Build degitx-simulator
-        run: gradle clean build
+        run: gradle build
