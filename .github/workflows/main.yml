@@ -1,6 +1,6 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-group = "com.degitx.simulator"
+group = "com.cqfn.degitx.simulator"
 version = "0.0.1"
 
 val kotlinVersion = "1.4.10"
@@ -21,15 +21,14 @@ plugins {
 val compileKotlin: KotlinCompile by tasks
 val compileTestKotlin: KotlinCompile by tasks
 compileKotlin.run {
-    kotlinOptions.jvmTarget = "1.8"
+    kotlinOptions.jvmTarget = "1.11"
 }
 compileTestKotlin.run {
-    kotlinOptions.jvmTarget = "1.8"
+    kotlinOptions.jvmTarget = "1.11"
 }
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion")
-    implementation("org.jetbrains.kotlinx:kotlinx-cli:0.3")
 
     testImplementation("org.testng:testng-6.14.3")
 }
@@ -40,27 +39,9 @@ tasks.test {
 }
 
 application {
-    mainClass.set("com.degitx.simulator.Simulator")
+    mainClass.set("com.cqfn.degitx.simulator.Simulator")
 }
 
-// code style
-val ktlint by configurations.creating {
-    // temporary enable maven local to run diktat snapshot
-    repositories {
-        mavenLocal()
-        mavenCentral()
-    }
-}
-dependencies {
-    ktlint("com.pinterest:ktlint:0.37.1") {
-        exclude("com.pinterest.ktlint", "ktlint-ruleset-standard")
-    }
-    ktlint("org.cqfn.diktat:diktat-rules:0.1.2")
-}
-task<JavaExec>("diktat") {
-    setGroup("verification")
-    setDescription("Check Kotlin code style.")
-    mainClass.set("com.pinterest.ktlint.Main")
-    classpath = ktlint
-    args("--debug", "src/**/*.kt")
-}
+// TODO: add code style checker
+
+
