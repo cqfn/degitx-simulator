@@ -18,12 +18,11 @@ plugins {
     application
 }
 
-val compileKotlin: KotlinCompile by tasks
-val compileTestKotlin: KotlinCompile by tasks
-compileKotlin.run {
+val compileKotlin by tasks.getting(KotlinCompile::class) {
     kotlinOptions.jvmTarget = "11"
 }
-compileTestKotlin.run {
+
+val compileTestKotlin by tasks.getting(KotlinCompile::class) {
     kotlinOptions.jvmTarget = "11"
 }
 
@@ -47,7 +46,5 @@ tasks.test {
 application {
     mainClass.set("com.cqfn.degitx.simulator.Simulator")
 }
-
-// TODO: add code style checker
 
 
