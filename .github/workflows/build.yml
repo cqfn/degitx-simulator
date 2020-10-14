@@ -5,7 +5,7 @@ on:
     branches: [ master ]
 
 jobs:
-  diktat_check:
+  simulator_check:
     runs-on: ubuntu-latest
     env:
       GRADLE_OPTS: -Dorg.gradle.daemon=false
