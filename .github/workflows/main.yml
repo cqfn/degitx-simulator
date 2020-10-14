@@ -21,16 +21,22 @@ plugins {
 val compileKotlin: KotlinCompile by tasks
 val compileTestKotlin: KotlinCompile by tasks
 compileKotlin.run {
-    kotlinOptions.jvmTarget = "1.11"
+    kotlinOptions.jvmTarget = "11"
 }
 compileTestKotlin.run {
-    kotlinOptions.jvmTarget = "1.11"
+    kotlinOptions.jvmTarget = "11"
 }
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion")
 
     testImplementation("org.testng:testng-6.14.3")
+}
+
+tasks.withType<KotlinCompile> {
+    kotlinOptions {
+        jvmTarget = "11"
+    }
 }
 
 tasks.test {
