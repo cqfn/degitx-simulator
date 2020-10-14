@@ -1,0 +1,47 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
+group = "com.cqfn.degitx.simulator"
+version = "0.0.1"
+
+val kotlinVersion = "1.4.10"
+
+repositories {
+    mavenCentral()
+    jcenter()
+    maven { url = uri("https://kotlin.bintray.com/kotlinx") }
+}
+
+plugins {
+    java
+    kotlin("jvm") version "1.4.10"
+    kotlin("plugin.serialization") version "1.4.10"
+    application
+}
+
+val compileKotlin: KotlinCompile by tasks
+val compileTestKotlin: KotlinCompile by tasks
+compileKotlin.run {
+    kotlinOptions.jvmTarget = "1.11"
+}
+compileTestKotlin.run {
+    kotlinOptions.jvmTarget = "1.11"
+}
+
+dependencies {
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion")
+
+    testImplementation("org.testng:testng-6.14.3")
+}
+
+tasks.test {
+    // enable TestNG support (default is JUnit)
+    useTestNG()
+}
+
+application {
+    mainClass.set("com.cqfn.degitx.simulator.Simulator")
+}
+
+// TODO: add code style checker
+
+
