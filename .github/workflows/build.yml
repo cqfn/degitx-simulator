@@ -1,9 +1,9 @@
 name: Build degitx-simulator
-
 on:
   pull_request:
     branches: [ master ]
-
+  push:
+    branches: [ master ]
 jobs:
   simulator_check:
     runs-on: ubuntu-latest
