@@ -12,7 +12,7 @@ User write node service logic as interface:
 class Example implements Service {
 
   @Override
-  void example(Hardware hardware) {  
+  void run(Hardware hardware) {  
     Network net = hardware.network();
     if (net.address().equals(new Address("/simulator/node1")) { // we are on `node1`
       // sending data via simulator hardware network
