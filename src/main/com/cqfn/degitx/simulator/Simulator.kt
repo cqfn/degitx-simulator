@@ -4,6 +4,7 @@ const val VERSION = "0.0.1"
 
 fun main() {
     val Sim = Simulator()
+    println(Sim.version())
 }
 
 class Simulator {
