@@ -4,6 +4,13 @@ package com.cqfn.degitx.simulator
  * Represents server HW layer
  */
 interface Hardware {
-    public val storage: Storage
-    public val net: Network
+    /**
+     * Data storage hardware
+     */
+    val storage: Storage
+
+    /**
+     * Network adapter
+     */
+    val net: Network
 }

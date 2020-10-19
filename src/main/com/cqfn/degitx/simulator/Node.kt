@@ -19,8 +19,6 @@ class Node(override var hardware: Hardware,
         this.rqPool = LinkedList<Request>()
     }
 
-    var repos = emptyList<GitRepo>()
-
     /**
      * Logic of software GitHub Node
      */

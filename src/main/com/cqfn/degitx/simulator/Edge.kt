@@ -26,7 +26,8 @@ class Edge {
      */
     var throughput = 0L
 
-    fun getCurrentThroughput(): Long {
-        return (this.throughput / ThreadLocalRandom.current().nextLong(1, 10))
+    fun throughput(): Long {
+        // TODO: calculate the real numbers based on parameter and some minor random delta.
+        return this.throughput
     }
 }

@@ -11,8 +11,8 @@ interface Network {
 
     /**
      * Send request rs to given address.
-     * @param addr - address in multi-address format
-     * @param rq - request headers+body
+     * @param addr - address in any format
+     * @param rq - request
      */
     fun send(addr: Address, rq: Request)
 
