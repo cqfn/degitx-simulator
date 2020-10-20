@@ -13,17 +13,14 @@ interface Server {
     var hardware: Hardware
 
     /**
-     * Pool of incoming requests
-     */
-    var rqPool: Queue<Request>
-
-    /**
      * Current state of server
      */
     var state: State
 
     /**
      * Logic which must find next recipient when given address in not equals to its.
+     * If received addr is equal to current one, process it:
+     *
      */
     fun run(addr: Address, rq: Request)
 }

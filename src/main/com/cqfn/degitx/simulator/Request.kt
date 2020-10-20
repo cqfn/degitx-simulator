@@ -1,16 +1,22 @@
 package com.cqfn.degitx.simulator
 
 /**
- * Stub for Request sent via Network to Address
+ * Stub for Request sent via Network to Address.
  */
 class Request {
-    constructor(sender: Address, size: Int) {
+    constructor(sender: Address, id: Int, size: Int) {
         this.sender = sender
+        this.id = id;
         this.size = size
     }
 
     /**
-     * Initiator of request
+     * Optional ID of request for cases when response is required.
+     */
+    var id = 0
+
+    /**
+     * Initiator of request.
      */
     val sender: Address
 
