@@ -12,6 +12,7 @@ class Request {
 
     /**
      * Optional ID of request for cases when response is required.
+     * Defaut value is 0 = No Response Required.
      */
     var id = 0
 
