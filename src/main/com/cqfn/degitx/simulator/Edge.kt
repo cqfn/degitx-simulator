@@ -1,9 +1,9 @@
 package com.cqfn.degitx.simulator
 
-import java.util.concurrent.ThreadLocalRandom
-
 /**
- * Represents whole network infrastructure between two Servers. Emulates delays and throughput limitations.
+ * Represents the record in routing table.
+ * Global routing table is represented here by Graph class.
+ * @see Graph
  */
 class Edge {
     constructor(from: Server, to: Server) {
@@ -21,13 +21,4 @@ class Edge {
      */
     var state: State
 
-    /**
-     * Maximum limit in Mb/sec
-     */
-    var throughput = 0L
-
-    fun throughput(): Long {
-        // TODO: calculate the real numbers based on parameter and some minor random delta.
-        return this.throughput
-    }
 }
