@@ -1,9 +1,9 @@
 package com.cqfn.degitx.simulator
 
-import java.util.Queue
+import java.util.*
 
 /**
- * Smart hardware router representation.
+ * Smart hardware router or Server (Node) representation.
  * Able to receive and send requests and ask neighbours about requested address
  */
 interface Server {
@@ -16,6 +16,11 @@ interface Server {
      * Current state of server
      */
     var state: State
+
+    /**
+     * Income requests
+     */
+    var rqPool: Queue<Request>
 
     /**
      * Logic which must find next recipient when given address in not equals to its.

@@ -10,20 +10,21 @@ import java.util.*
  * @see Edge
  */
 class Node(override var hardware: Hardware,
-           override var rqPool: Queue<Request>,
            override var state: State) : Server {
 
-    constructor(hw: Hardware) {
-        this.state = State.ACTIVE
-        this.hardware = hw
-        this.rqPool = LinkedList<Request>()
-    }
+    constructor(hw: Hardware): this(hw, State.ACTIVE)
+
+    override var rqPool: Queue<Request> = LinkedList<Request>()
 
     /**
      * Logic of software GitHub Node
      */
     override fun run(addr: Address, rq: Request) {
-
+        // Process incoming requests to THIS node
+        var req = rqPool.poll()
+        while (req != null) {
+           // req.
+        }
     }
 
 }

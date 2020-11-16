@@ -6,9 +6,9 @@ package com.cqfn.degitx.simulator
  * @see Graph
  */
 class Edge {
-    constructor(from: Server, to: Server) {
-        this.head = from
-        this.tail = to
+    constructor(tail: Server, head: Server) {
+        this.head = head
+        this.tail = tail
         this.state = State.ACTIVE
     }
 
