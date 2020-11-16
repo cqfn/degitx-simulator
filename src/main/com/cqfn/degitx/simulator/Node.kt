@@ -20,11 +20,21 @@ class Node(override var hardware: Hardware,
      * Logic of software GitHub Node
      */
     override fun run(addr: Address, rq: Request) {
-        // Process incoming requests to THIS node
-        var req = rqPool.poll()
-        while (req != null) {
-           // req.
-        }
+        if (rq.addressee.equals(this.hardware.net.addr)) {
+            // Process incoming requests to THIS node
+            when (rq.type) {
+                Request.Type.READ -> rq.timespent += this.hardware.storage.read(rq.size)
+                Request.Type.WRITE -> rq.timespent += this.hardware.storage.write(rq.size)
+            }
+            // Request is processed successfully, log it.
+            //TODO: Change this log to message send. See issue #6
+            println("Request with id " + rq.id + " processed in " + rq.timespent + " msec on the Node with address " + addr)
+        } else { // Redirect this rq to other node
+            var gr = DsGraph
+            var edges : List<Edge> = gr.outgoingEdges(this)
+            // TODO: Increment rq's timespent. See issue #19
+            for (edge in edges) edge.head.run(addr, rq)
+        } // else - redirect
     }
 
 }
