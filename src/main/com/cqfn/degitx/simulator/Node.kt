@@ -1,7 +1,5 @@
 package com.cqfn.degitx.simulator
 
-import java.util.*
-
 /**
  * Physical Server with GitHub repositories (Node) representation.
  * As part of global networks connected with other Nodes via Edges.
