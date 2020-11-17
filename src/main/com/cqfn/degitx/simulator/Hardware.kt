@@ -7,10 +7,10 @@ interface Hardware {
     /**
      * Data storage hardware
      */
-    var storage: Storage
+    val storage: Storage
 
     /**
      * Network adapter
      */
-    var net: Network
+    val net: Network
 }

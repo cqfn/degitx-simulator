@@ -2,6 +2,12 @@ package com.cqfn.degitx.simulator
 
 import java.util.*
 
+/**
+ * Singleton object which represents Routing Table for any Server in Simulated Distributed Network.
+ * Used for nodes search and get their outgoing edges to get access to neighbors (Nodes of Routers).
+ * @see Edge
+ * @see Server
+ */
 object DsGraph : Graph {
 
     override var nodes: List<Server> = LinkedList<Server>()

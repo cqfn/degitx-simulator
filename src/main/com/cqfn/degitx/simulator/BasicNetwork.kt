@@ -3,7 +3,8 @@ package com.cqfn.degitx.simulator
 import java.util.*
 
 /**
- * Network implementation as a very common network adapter.
+ * Network implementation as a very common and ideal network adapter.
+ * Use in case when network call does not expect any response and does not check the real throughput (unlimited).
  */
 class BasicNetwork(override var addr: Address,
                    override var rqPool: Queue<Request>,

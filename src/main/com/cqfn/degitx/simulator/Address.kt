@@ -6,29 +6,25 @@ import kotlin.streams.asSequence
 /**
  * Representation of address for emulator
  */
-class Address {
 
-    private val source = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+const val source = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-    private val addressLength = 6L
+const val addressLength = 6L
 
-    constructor() {
-        this.addr = Random().ints(addressLength, 0, source.length)
+class Address(address : String) {
+
+    /**
+     * Multi format address, public property
+     */
+    val addr = address
+
+    companion object {
+        val randomAddr = Random().ints(addressLength, 0, source.length)
                 .asSequence()
                 .map(source::get)
                 .joinToString("")
     }
 
-    constructor(addr: String) {
-        this.addr = addr
-    }
+    constructor() : this(randomAddr)
 
-    /**
-     * Multi format address
-     */
-    private val addr: String
-
-    fun addr(): String {
-        return addr;
-    }
 }
