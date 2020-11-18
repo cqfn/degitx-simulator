@@ -55,6 +55,7 @@ class GraphGenerator{
         graph.nodes = nodes.toList()
         graph.edges = edges.toList()
         println("Nodes count: " + graph.nodes.size)
+        println("Edges count: " + graph.edges.size)
         return graph
     }
 }

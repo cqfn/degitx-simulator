@@ -3,16 +3,15 @@ package com.cqfn.degitx.simulator
 import org.testng.annotations.Test
 
 import org.testng.Assert.*
-import org.testng.annotations.BeforeSuite
+import org.testng.annotations.BeforeTest
 
 class GraphGeneratorTest {
 
     var graph = GraphGenerator()
-    var grIns = DsGraph
 
-    @BeforeSuite
+    @BeforeTest
     fun setUp() {
-        grIns = graph.generate(GraphGenerator.Settings())
+        graph.generate(GraphGenerator.Settings())
     }
 
     @Test
