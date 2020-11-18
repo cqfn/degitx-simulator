@@ -11,7 +11,9 @@ class Simulator {
     fun version(): String {
         return "DeGitX Simulator v" + VERSION
     }
-    // Read settings
+    // TODO: Issue #23: Read settings
+
+
     // Initiate logs
     // Generate Graph
     // Place repositories to Nodes

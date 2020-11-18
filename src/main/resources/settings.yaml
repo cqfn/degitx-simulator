@@ -1,0 +1,4 @@
+name: "network"
+graph:
+  nodenumbers: 3
+  edges: 100

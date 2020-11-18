@@ -6,15 +6,21 @@ package com.cqfn.degitx.simulator
  * @see Graph
  */
 class Edge {
-    constructor(from: Server, to: Server) {
-        this.from = from
-        this.to = to
+    constructor(tail: Server, head: Server) {
+        this.head = head
+        this.tail = tail
         this.state = State.ACTIVE
     }
 
-    val from: Server
+    /**
+     * Destination
+     */
+    val head: Server
 
-    val to: Server
+    /**
+     * Departure
+     */
+    val tail: Server
 
     /**
      * Current state of Edge

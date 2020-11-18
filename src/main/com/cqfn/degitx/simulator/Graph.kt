@@ -7,20 +7,19 @@ package com.cqfn.degitx.simulator
 interface Graph {
 
     /**
-     * All GitHub Nodes
-     * Here String is MAC Address
+     * All GitHub Nodes and Routers
      */
-    var nodes: HashMap<String, Server>
+    var nodes: List<Server>
 
     /**
-     * All Edges between Nodes (or Routers)
+     * All Edges between Nodes
      */
-    var edges: HashMap<String, Edge>
+    var edges: List<Edge>
 
     /**
      * To be used by Routers and Nodes for discovery protocol
      */
-    fun outgoingEdges(node: Node): List<Node>
+    fun outgoingEdges(tail: Server): List<Edge>
 
-    fun incomingEdges(node: Node): List<Node>
+    fun incomingEdges(head: Server): List<Edge>
 }
