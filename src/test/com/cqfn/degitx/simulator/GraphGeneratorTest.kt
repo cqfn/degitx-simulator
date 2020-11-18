@@ -17,8 +17,11 @@ class GraphGeneratorTest {
 
     @Test
     fun testGenerate() {
-        assertEquals(grIns.nodes.isNotEmpty(), true)
-        assertEquals(grIns.edges.isNotEmpty(), true)
-        assertEquals(grIns.incomingEdges(grIns.nodes[0]).size, 4)
+        assertEquals(DsGraph.nodes.isNotEmpty(), true)
+        assertEquals(DsGraph.edges.isNotEmpty(), true)
+        assertEquals(DsGraph.nodes.size, 4)
+        assertEquals(DsGraph.edges.size, 6)
+        assertEquals(DsGraph.outgoingEdges(DsGraph.nodes[0]).size, 1)
+        assertEquals(DsGraph.incomingEdges(DsGraph.nodes[0]).size, 3)
     }
 }

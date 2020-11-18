@@ -2,6 +2,11 @@ package com.cqfn.degitx.simulator
 
 import java.util.*
 
+/**
+ * Helper class to generate Graph in a dummy way while load from .DOT file is not implemented.
+ * @see issues #23 and #24
+ * Be used for integration tests during MVP develop.
+ */
 class GraphGenerator{
 
     var nodes = emptyArray<Server>()
@@ -43,12 +48,13 @@ class GraphGenerator{
         edges = edges.plus(edge)
         edge = Edge(nodes[nodes.size-2], nodes[nodes.size-3])
         edges = edges.plus(edge)
-        edge = Edge(nodes[nodes.size-3], nodes[nodes.size-4]) // nodes[0]
+        edge = Edge(nodes[0], nodes[nodes.size-1])
         edges = edges.plus(edge)
 
         var graph = DsGraph
         graph.nodes = nodes.toList()
         graph.edges = edges.toList()
+        println("Nodes count: " + graph.nodes.size)
         return graph
     }
 }

@@ -21,7 +21,7 @@ class Node(override var hardware: Hardware,
             this.hardware.net.rqPool.add(rq)
             processRequest()
         } else {
-            println("Node with address " + this.hardware.net.addr.addr() +
+            println("Node with address " + this.hardware.net.addr.addr +
                     " cannot process request as it is " + this.state.toString())
         }
     }
