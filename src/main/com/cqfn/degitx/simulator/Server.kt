@@ -1,7 +1,5 @@
 package com.cqfn.degitx.simulator
 
-import java.util.*
-
 /**
  * Smart hardware router or Server (Node) representation.
  * Able to receive and send requests and ask neighbours about requested address

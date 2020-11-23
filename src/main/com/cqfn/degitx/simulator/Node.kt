@@ -28,26 +28,34 @@ class Node(override var hardware: Hardware,
 
     /**
      * Node internal logic for Request processing
+     * Process incoming requests to THIS node here, log it, and redirect others
      */
     fun processRequest() {
         var rq : Request = this.hardware.net.receive().poll()
         while (rq != null) {
             if (rq.addressee.equals(this.hardware.net.addr)) {
-                // Process incoming requests to THIS node
                 when (rq.type) {
-                    Request.Type.READ -> rq.timespent += this.hardware.storage.read(rq.size)
-                    Request.Type.WRITE -> rq.timespent += this.hardware.storage.write(rq.size)
+                    // TODO: Learn Kotlin better and rewrite it properly. Check isNode before.
+                    Request.Type.READ -> rq.timespent += this.hardware?.storage?.read(rq.size) ?: rq.timespent
+                    Request.Type.WRITE -> rq.timespent += this.hardware?.storage?.write(rq.size) ?: rq.timespent
                 }
-                // Request is processed successfully, log it.
                 //TODO: Change this log to message send. See issue #6
                 println("Request with id " + rq.id + " processed in " + rq.timespent +
                         " msec on the Node with address " + this.hardware.net.addr)
-            } else { // Redirect this rq to other node
-                var gr = DsGraph
-                var edges : List<Edge> = gr.outgoingEdges(this)
-                // TODO: Increment rq's timespent. See issue #19
-                for (edge in edges) edge.head.run(rq)
-            } // else - redirect
+            } else {
+                redirect(rq)
+            }
         }
+    }
+
+    /**
+     * Redirect request according to Node discovery protocol.
+     * May be improved to go to API method of Server, if needed.
+     */
+    fun redirect(rq: Request) {
+        var gr = DsGraph
+        var edges : List<Edge> = gr.outgoingEdges(this)
+        // TODO: Increment rq's timespent. See issue #19
+        for (edge in edges) edge.head.run(rq)
     }
 }

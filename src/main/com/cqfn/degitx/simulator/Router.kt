@@ -3,6 +3,7 @@ package com.cqfn.degitx.simulator
 /**
  * Smart Router representation.
  * As part of global networks connected with other Servers via Edges.
+ * Similar to Node, another implementation of Server without GitHub logic, just router.
  *
  * @see Graph
  * @see Edge
@@ -13,24 +14,34 @@ class Router(override var hardware: Hardware,
     constructor(hw: Hardware): this(hw, State.ACTIVE)
 
     /**
-     * Logic of software router
+     * Logic of software or hardware Router
      */
     override fun run(rq: Request) {
-        if (rq.addressee == this.hardware.net.addr) {
-            System.out.println("Router cannot be an addressee.")
+        if (this.state == State.ACTIVE) {
+            this.hardware.net.rqPool.add(rq)
+            processRequest()
         } else {
-            // get neighbors and call them
-            var neighbors = DsGraph.outgoingEdges(this)
-            var node = neighbors.filter { hardware.net.addr == rq.addressee }
-            if (node.getOrNull(0) != null) {
-                // Got it
-                // this.hardware.net.send(node.get(0).hardware.net.addr, rq)
-            } else {
-                // Loop by neighbors and recursion call
-
-            }
-
+            println("Node with address " + this.hardware.net.addr.addr +
+                    " cannot process request as it is " + this.state.toString())
         }
     }
 
+    /**
+     * Simple Router internal logic for Request processing - just resend Request to all connected Nodes
+     */
+    fun processRequest() {
+        var rq : Request = this.hardware.net.receive().poll()
+        while (rq != null) redirect(rq)
+    }
+
+    /**
+     * Redirect request according to Node discovery protocol.
+     * May be improved to go to API method of Server, if needed.
+     */
+    fun redirect(rq: Request) {
+        var gr = DsGraph
+        var edges : List<Edge> = gr.outgoingEdges(this)
+        // TODO: Increment rq's timespent. See issue #19
+        for (edge in edges) edge.head.run(rq)
+    }
 }
