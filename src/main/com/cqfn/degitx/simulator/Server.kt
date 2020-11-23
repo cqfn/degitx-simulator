@@ -18,14 +18,7 @@ interface Server {
     var state: State
 
     /**
-     * Income requests
-     */
-    var rqPool: Queue<Request>
-
-    /**
      * Logic which must find next recipient when given address in not equals to its.
-     * If received addr is equal to current one, process it:
-     *
      */
-    fun run(addr: Address, rq: Request)
+    fun run(rq: Request)
 }
