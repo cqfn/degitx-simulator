@@ -234,12 +234,10 @@ System contents the following modules:
         \item State (Active/Down)
     \end{itemize}
     If edge is not active, system must find another way to get the target node.\par
-    In corner case there may be nodes without GitHub repositories, serve as \textbf{routers}. Such routers can have different strategies and have not storage (can't serve as a final destination of the request.\par
-    Node state must be set with given distribution method. (Normal, random, etc)\par
-    Repository is a logic component, represents GitHub repository instance. Should be distributed by at least three Nodes, connected with one sub-graph. Nodes must be connected either directly or not.\par
+    In corner case there may be nodes without internal logic for processing requests, serve as \textbf{routers}. Such routers can have different strategies and have not storage (can't serve as a final destination of the request.\par
+    Node state must be set with given distribution method. (Normal, random, etc). Nodes must be connected either directly or not.\par
 
     To compare different methods and protocols correctly, system should operate with the same graph. To achieve it, \textbf{load} and \textbf{save} operations are present, a graph can be stored in~\cite{dot}.
-
 
     \item[Simulator Engine.]
     Based on predefined data and generated graph simulate users' activity and network infrastructure behavior, and log all events. Simulator must provide implementations of
