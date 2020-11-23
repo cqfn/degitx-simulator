@@ -3,7 +3,258 @@
 \usepackage{float}
 \usepackage[bottom]{footmisc}
 \usepackage{bookmark}
-\usepackage{microtype}
+\usepackage{microtype}\documentclass[12pt,oneside]{article}
+                      \usepackage[utf8]{inputenc}
+                      \usepackage{float}
+                      \usepackage[bottom]{footmisc}
+                      \usepackage{bookmark}
+                      \usepackage{microtype}
+                      \usepackage{amsmath}
+                      \usepackage{multicol}
+                      \usepackage{mdframed}
+                      \usepackage{setspace}
+                      \usepackage{pgfplots}
+                      \usepackage{graphicx}
+                      \usepackage{fancyvrb}
+                      \usepackage[absolute]{textpos}\TPGrid{16}{16}
+                      \usepackage{tikz}
+                        \usetikzlibrary{shapes}
+                        \usetikzlibrary{arrows.meta}
+                        \usetikzlibrary{arrows}
+                        \usetikzlibrary{shadows}
+                        \usetikzlibrary{trees}
+                        \usetikzlibrary{fit}
+                        \usetikzlibrary{calc}
+                        \usetikzlibrary{positioning}
+                        \usetikzlibrary{decorations.pathmorphing}
+                      \usepackage{./tikz-uml}
+                      \usepackage{everypage}
+                        \AddEverypageHook{
+                          \begin{textblock}{0.5}[0,0](0,0)
+                            \tikz \node[fill=myred,minimum width=0.5\TPHorizModule,minimum height=16\TPVertModule] {};
+                          \end{textblock}
+                          \begin{textblock}{0.125}[0,0](0.5,0)
+                            \tikz \node[fill=myblack,inner sep=0, minimum width=0.125\TPHorizModule,minimum height=16\TPVertModule] {};
+                          \end{textblock}
+                        }
+                      \usepackage{xcolor}
+                        \definecolor{firebrick}{HTML}{B22222}
+                        \definecolor{myred}{HTML}{CF0A2C}
+                        \definecolor{myblack}{HTML}{232527}
+                      \newcommand\dd[1]{\colorbox{gray!30}{\texttt{#1}}}
+                      \usepackage{hyperref}
+                        \hypersetup{colorlinks=true,allcolors=blue!40!black}
+                      \setlength{\topskip}{6pt}
+                      \setlength{\parindent}{0pt} % indent first line
+                      \setlength{\parskip}{6pt} % before par
+                      % \let\oldsection\section\renewcommand\section{\newpage\oldsection}
+                      \date{\small\today}
+                      \title{%
+                        DRAFT: DeGitX simulator \\
+                        \colorbox{firebrick}{\small\sffamily\color{white}{White Paper}}}
+                      \usepackage[style=authoryear,sorting=nyt,backend=biber,
+                        hyperref=true,abbreviate=true,
+                        maxcitenames=1,maxbibnames=1]{biblatex}
+                        \renewbibmacro{in:}{}
+                        \addbibresource{books.bib}
+                      \tikzset{node distance=1.6cm, auto, every text node part/.style={align=center, font={\sffamily\small}}}
+                      \tikzstyle{block} = [draw=myblack, fill=white, inner sep=0.3cm, outer sep=0.1cm, thick]
+                      \tikzstyle{ln} = [draw, ->, very thick, arrows={-triangle 90}, every text node part/.append style={font={\sffamily\scriptsize}}]
+
+                      % custom commands
+                      \newcommand{\code}[1]{\texttt{#1}}
+                      \newcommand{\todo}[1]{\textcolor{red}{TODO: #1}}
+
+                      \begin{document}
+                      \raggedbottom
+
+                      \maketitle
+                      \begin{abstract}
+                      DeGitX Simulator is the tool which emulates environment where distributed software works in. It includes network, servers, middle hardware a software like routers, firewalls etc. Every emulated node must simulate delays and crashes with some probability (random events). Technically network may be presented as bi-directional graph, where vertices are nodes with repositories and edges are connections (with all network infrastructure).
+                      \end{abstract}
+
+                      % \onehalfspace
+
+                      \section{Statement}
+                      IT industry moves from centralized to cloud architecture, where information stored in distributed copies and synchronized frequently. There is a problem to evaluate whether the chosen model is suitable before start expensive development.
+
+                      \section{Solution}
+                      The solution for this problem is the Model Behavior Simulator. Simulation software is used by engineers to imitate a real-world phenomenon before manufacturing the engineered product. Simulator allows to try different ways of implementation and measure results between each other. The model achieved a result, which better fits expected metrics may be chosen as preferable.
+                      The benefits of such approach are obvious:
+                      \begin{itemize}
+                          \item Lower cost of development;
+                          \item Shorter time to spend on development;
+                          \item Predictable result of system's work in the real world.
+                      \end{itemize}
+                      Solution could simulate users' work with Decentralized GitHub repositories, and system behavior based on limitations and exceptional events.
+
+                      \section{Requirements}
+                      \label{sec:requirements}
+
+                      \subsection{Features}
+                      \label{sec:features}
+                      Start statement is a huge graph of physical network components and set of repositories, placed on nodes of this graph. System allows to simulate the following things:
+                      \begin{itemize}
+                          \item Discrete Event: Chron jobs, run by timer with or without variable parameters.
+                          \item Actor-Based: When operator can make any unexpected change in any place of the system.
+                          \item System Dynamics: System can change its behavior based on state of components.
+                      \end{itemize}
+
+                      \subsection{Non-functional Requirements}
+                      \label{sec:nfr}
+                      The most critical
+                      \href{https://en.wikipedia.org/wiki/Non-functional_requirement}{Non-functional requirements}
+                      are:
+                      \begin{itemize}
+                          \item Adaptability: System must allow easy modifications of given network topology, test metrics and protocols.
+                          \item Extensibility: Adding new features and carry-forward of customization at next major version upgrade.
+                          \item Open source: Solution must be published as open source tool to open collaboration.
+                          \item Reusability: Been developed to simulate a concrete product behavior, system must be reusable to simulate any similar software or network itself.
+                          \item Testability: As a test tool, the Simulator must allow test every module and every piece of functionality to provide trustable results.
+                      \end{itemize}
+
+                      \subsection{Functional Requirements}
+                      \label{sec:fr}
+
+                      The most important \href{https://en.wikipedia.org/wiki/Functional_requirement}{functional requirements} are:
+
+                      \subsubsection{Input data}
+                      \label{sec:input}
+
+                      The system potentially may have different kinds of front-ends, as no integration expected. Initial and system settings might be stored as files.
+
+                      System must simulate a high-loaded network of large enterprise with active users. It is expected to have the following numbers, in terms of load, size, and speed:
+
+                      \begin{tabular}{ll}
+                        Repositories & 2M \\
+                        Active users & 100K/day \\
+                        Merges & 100K/day \\
+                        Fetches & 15M/day, 15K/m - peak \\
+                        Push & 200K/day \\
+                        Traffic - download & 200Tb/day \\
+                        Traffic - update & 250Gb/day \\
+                      \end{tabular}
+
+                      An algorithm for test node behavior must be implemented as external function. This function will control over nodes and able to manipulate them in a same way as ``physical'' emulated network node.
+
+                      Network configuration must be provided as full graph of physical servers (vertices) and their connections (edges).
+
+                      Probability of any network issues be provided as settings for simulator.
+
+                      Frequency of all possible operations and average time for processing must be set as initial parameters.
+
+                      To generate graph the following settings are needed to be set:
+                      \begin{itemize}
+                          \item Number of regions;
+                          \item Number of nodes;
+                          \item Number of repositories;
+                          \item Number of clients;
+                          \item Each node can has personal throughput of read/write operations;
+                      \end{itemize}
+
+                      Every edge of graph (path from vertex A to vertex B) can has own configuration and delays.
+
+                      Every repository can use different number of nodes and has variable initial size.
+
+                      Every client can has its own activity profile (push/fetch requests per time, read/write relation, average and peak values)
+
+                      \subsubsection{Output data}
+                      \label{sec:output}
+
+                      The Simulator must answer the question "Is the given model suitable for tested topology of network?"
+
+                      System must log all important steps what was happening ordered by timestamps. FrontEnd side should allow to see history at any moment and provide analysis tools.
+
+                      Algorithm must measure timings for such operations as push,  pull, merge, etc, which are most used by DeGitX users.
+
+                      The main metrics are:
+                      \begin{itemize}
+                          \item Average response time depending on type and size of the request;
+                          \item Average load on the repository (read-write)
+                      \end{itemize}
+
+                      \section{Compare to other solutions}
+
+                      There are existing tools both, open source libraries and commercial products to simulate environment behavior. Here is the list of most similar and popular software.\par
+                      \begin{description}
+                        \item[\href{https://github.com/dsorokin/aivika}{\textbf{Aivika}}]
+                      Open source, \href{https://hackage.haskell.org/package/aivika-5.9/src/LICENSE}{BSD-3-Clause}
+                          \begin{quote}
+                      A discrete event simulation framework with support of activity-oriented, event-oriented and process-oriented paradigms. It supports resource preemption and other improved simulation techniques. There is also a partial support of system dynamics and agent-based modelling.
+                          \end{quote}
+                      Library is written in Haskell, it's not easy to find such specialists in the market. Functionality is aiming to simulate networks, but mainly based on discrete events engine. Most probably, does not cover our requirements well enough.
+
+                        \item[\href{https://omnetpp.org/}{\textbf{OMNeT++}}]
+                      Open source, \href{https://github.com/omnetpp/omnetpp}{GNU AGPLv3}\par
+                      Self-described as
+                          \begin{quote}
+                              an extensible, modular, component-based C++ simulation library and framework, primarily for building network simulators.
+                          \end{quote}
+                      OMNeT++ is a public-source, component-based, modular and open-architecture simulation environment with strong GUI support and an embeddable simulation kernel. Its primary application area is the simulation of communication networks, but it has been successfully used in other areas like the simulation of IT systems, queueing networks, hardware architectures and business processes as well.
+
+                        \item[\href{http://www.oversim.org/wiki}{\textbf{OverSim}}]
+                      Open source, GNU AGPLv3. \href{http://www.oversim.org/wiki/OverSimDownload}{Code in archive here.}
+
+                      OverSim is an open-source overlay and peer-to-peer network simulation framework for the \href{https://omnetpp.org/}{OMNeT++} simulation environment. The simulator contains several models for structured (e.g. Chord, Kademlia, Pastry) and unstructured (e.g. GIA) P2P systems and overlay protocols.\par
+                      This is the addon over OMNeT++ engine, with possibilities for customization. Code is opened, but not in github. Modifications are possible, but codebase is a mess of unstructured blocks and it's quite hard to understand dependencies. Deep analysis of the codebase predicts the long-term developing, longer as it can be from the scratch.
+                      However it can be useful as library with \href{https://en.wikipedia.org/wiki/Kademlia}{Kademlia} implementation.
+
+                        \item[\href{https://www.anylogic.com/}{\textbf{AnyLogic}}]
+                      Designed as most complete solution for any case, and allows to use all three modern methods:
+                          \begin{itemize}
+                              \item Discrete Event
+                              \item Agent-Based
+                              \item System Dynamics
+                          \end{itemize}
+                          \begin{quote}
+                          The three methods can be used in any combination, with one software, to simulate business systems of any complexity. A various visual modeling languages can be used: process flowcharts, state charts, action charts, and stock and flow diagrams. AnyLogic provides industry-specific libraries.\par
+                          \end{quote}
+                      It's a proprietary software that can't be used for free (except education propose) and the source code is closed. Moreover, this product is popular in industry as many others and not aimed to modelling the network infrastructure.
+
+                      \end{description}
+
+                      \section{Architecture}
+                      \label{sec:arch}
+
+                      Simulator creates a graph of physical nodes where placed distributed github repositories. Every repository is placed on some number (depending on settings) of physical nodes.
+
+                      All nodes for every repository must be connected, but not mandatory directly. Update the repository on one node must update other nodes according to chosen algorithm (part of model is testing).
+
+                      System must have an Event-Engine to simulate random environment processes and emulate payload (from mocked RPC requests of DeGitX).
+
+                      System contents the following modules:
+                      \begin{description}
+                          \item[Graph Generator.]
+                          Based on predefined settings, module should create bi-directional graph. Nodes are the physical servers which contain one or more repositories. Node state must be set based on settings with some minor random delta:
+                          \begin{itemize}
+                              \item Read operation speed (MB/sec)
+                              \item Write operation speed (Mb/sec)
+                              \item State (Active/Down)
+                          \end{itemize}
+                          Edges of graph are routes from one Node to another. They must have their own configuration properties:
+                          \begin{itemize}
+                              \item Throughput (max Mb/sec)
+                              \item State (Active/Down)
+                          \end{itemize}
+                          Node state must be set with given distribution method. (Normal, random, etc)\par
+                          Repository is a logic component, represents GitHub repository instance. Should be distributed by at least three Nodes, connected with one sub-graph. Nodes must be connected either directly or not.
+
+                          \item[Simulator Engine.]
+                          Based on predefined data and generated graph simulate users' activity and network infrastructure behavior, and log all events. Simulator must provide implementations of
+                          \begin{itemize}
+                              \item Node Discovery algorithm
+                              \item Consensus algorithm
+                          \end{itemize}
+                          with dynamic network life.
+
+                          \item[Reporting Module.]
+                          To Collect, Aggregate and prepare in any machine-readable or human-readable view timing data generated by Simulator. Input data for the Reporting module is logs of Simulator engine work.
+
+                      \end{description}
+
+                      \printbibliography%
+                      \end{document}
+
 \usepackage{amsmath}
 \usepackage{multicol}
 \usepackage{mdframed}
