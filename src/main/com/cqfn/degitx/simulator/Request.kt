@@ -4,12 +4,15 @@ package com.cqfn.degitx.simulator
  * Stub for Request sent via Network to Address.
  *
  * @param sender Initiator of request.
+ * @param addressee Recipient
  * @param id Optional ID of request for cases when response is required. Default value is 0 = No Response Required.
  * @param size Size of body instead of real data. It's enough for Simulation.
  * @param timespent Time spent to process this request. Will go to final log for analysis. Increments all way.
+ * @param type Type of request: Internal enum: Read/Write - related to Storage.
+ * @see Storage
  */
 class Request {
-    constructor(addressee: Address, sender: Address, id: Int, size: Long, timespent: Long, type: Request.Type) {
+    constructor(sender: Address, addressee: Address, id: Int, size: Long, timespent: Long, type: Request.Type) {
         this.addressee = addressee
         this.sender = sender
         this.id = id;
@@ -49,4 +52,13 @@ class Request {
      * Time spent to process this request. Will go to final log for analysis. Increments all way.
      */
     var timespent: Long
+
+    /**
+     * Format can be adapted after message designed.
+     * @see Issue #6
+     */
+    override fun toString() : String {
+        return type.toString() + " Request id " + id + "\nFrom: " + sender.addr + " To: " + addressee.addr +
+        " Size in bytes: " + size + " Spent ms: " + timespent
+    }
 }

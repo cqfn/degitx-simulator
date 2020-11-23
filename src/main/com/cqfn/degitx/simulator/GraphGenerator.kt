@@ -32,7 +32,7 @@ class GraphGenerator{
             nodes = nodes.plus(node)
         }
         for (i in 1..settings.routersNumber) {
-            var router = Router(NodeHardware(SATAStorage(),
+            var router = Router(NodeHardware(null,
                     BasicNetwork(Address("node"+(settings.nodeNumber+i).toString()), LinkedList(), 1L)),
                     State.ACTIVE)
             nodes = nodes.plus(router)
