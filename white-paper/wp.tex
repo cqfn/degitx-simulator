@@ -172,41 +172,39 @@ The main metrics are:
 
 There are existing tools both, open source libraries and commercial products to simulate environment behavior. Here is the list of most similar and popular software.\par
 \begin{description}
-  \item[\href{https://github.com/dsorokin/aivika}{\textbf{Aivika}}]
-Open source, \href{https://hackage.haskell.org/package/aivika-5.9/src/LICENSE}{BSD-3-Clause}
+    \item[\href{https://github.com/dsorokin/aivika}{\textbf{Aivika}}]
+    Open source, \href{https://hackage.haskell.org/package/aivika-5.9/src/LICENSE}{BSD-3-Clause}
     \begin{quote}
-A discrete event simulation framework with support of activity-oriented, event-oriented and process-oriented paradigms. It supports resource preemption and other improved simulation techniques. There is also a partial support of system dynamics and agent-based modelling.
+        A discrete event simulation framework with support of activity-oriented, event-oriented and process-oriented paradigms. It supports resource preemption and other improved simulation techniques. There is also a partial support of system dynamics and agent-based modelling.
     \end{quote}
-Library is written in Haskell, it's not easy to find such specialists in the market. Functionality is aiming to simulate networks, but mainly based on discrete events engine. Most probably, does not cover our requirements well enough.
+    Library is written in Haskell, it's not easy to find such specialists in the market. Functionality is aiming to simulate networks, but mainly based on discrete events engine. Most probably, does not cover our requirements well enough.
 
-  \item[\href{https://omnetpp.org/}{\textbf{OMNeT++}}]
-Open source, \href{https://github.com/omnetpp/omnetpp}{GNU AGPLv3}\par
-Self-described as 
+    \item[\href{https://omnetpp.org/}{\textbf{OMNeT++}}]
+    Open source, \href{https://github.com/omnetpp/omnetpp}{GNU AGPLv3}\par
+    Self-described as
     \begin{quote}
         an extensible, modular, component-based C++ simulation library and framework, primarily for building network simulators.
     \end{quote}
-OMNeT++ is a public-source, component-based, modular and open-architecture simulation environment with strong GUI support and an embeddable simulation kernel. Its primary application area is the simulation of communication networks, but it has been successfully used in other areas like the simulation of IT systems, queueing networks, hardware architectures and business processes as well.
-\todo{Analyze this tool}
+    OMNeT++ is a public-source, component-based, modular and open-architecture simulation environment with strong GUI support and an embeddable simulation kernel. Its primary application area is the simulation of communication networks, but it has been successfully used in other areas like the simulation of IT systems, queueing networks, hardware architectures and business processes as well.
 
-  \item[\href{http://www.oversim.org/wiki}{\textbf{OverSim}}]
-Open source, GNU AGPLv3. \href{http://www.oversim.org/wiki/OverSimDownload}{Code in archive here.}
+    \item[\href{http://www.oversim.org/wiki}{\textbf{OverSim}}]
+    Open source, GNU AGPLv3. \href{http://www.oversim.org/wiki/OverSimDownload}{Code in archive here.}
 
-OverSim is an open-source overlay and peer-to-peer network simulation framework for the \href{https://omnetpp.org/}{OMNeT++} simulation environment. The simulator contains several models for structured (e.g. Chord, Kademlia, Pastry) and unstructured (e.g. GIA) P2P systems and overlay protocols.\par
-This is the addon over OMNeT++ engine, with possibilities for customization. Code is opened, but not in github. \todo{Analyze possibilities of modification}
-\todo{analyze the source code}
-However it can be useful as library with \href{https://en.wikipedia.org/wiki/Kademlia}{Kademlia} implementation.
+    OverSim is an open-source overlay and peer-to-peer network simulation framework for the \href{https://omnetpp.org/}{OMNeT++} simulation environment. The simulator contains several models for structured (e.g. Chord, Kademlia, Pastry) and unstructured (e.g. GIA) P2P systems and overlay protocols.\par
+    This is the addon over OMNeT++ engine, with possibilities for customization. Code is opened, but not in github. Modifications are possible, but codebase is a mess of unstructured blocks and it's quite hard to understand dependencies. Deep analysis of the codebase predicts the long-term developing, longer as it can be from the scratch.
+    However it can be useful as library with \href{https://en.wikipedia.org/wiki/Kademlia}{Kademlia} implementation.
 
-  \item[\href{https://www.anylogic.com/}{\textbf{AnyLogic}}]
-Designed as most complete solution for any case, and allows to use all three modern methods:
+    \item[\href{https://www.anylogic.com/}{\textbf{AnyLogic}}]
+    Designed as most complete solution for any case, and allows to use all three modern methods:
     \begin{itemize}
         \item Discrete Event
         \item Agent-Based
         \item System Dynamics
     \end{itemize}
     \begin{quote}
-    The three methods can be used in any combination, with one software, to simulate business systems of any complexity. A various visual modeling languages can be used: process flowcharts, state charts, action charts, and stock and flow diagrams. AnyLogic provides industry-specific libraries.\par
+        The three methods can be used in any combination, with one software, to simulate business systems of any complexity. A various visual modeling languages can be used: process flowcharts, state charts, action charts, and stock and flow diagrams. AnyLogic provides industry-specific libraries.\par
     \end{quote}
-It's a proprietary software that can't be used for free (except education propose) and the source code is closed. Moreover, this product is popular in industry as many others and not aimed to modelling the network infrastructure.
+    It's a proprietary software that can't be used for free (except education propose) and the source code is closed. Moreover, this product is popular in industry as many others and not aimed to modelling the network infrastructure.
 
 \end{description}
 
