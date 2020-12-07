@@ -10,6 +10,8 @@ package com.cqfn.degitx.simulator
 class Node(override var hardware: Hardware,
            override var state: State) : Server {
 
+    var processedRqs = mutableSetOf<Int>()
+
     constructor(hw: Hardware): this(hw, State.ACTIVE)
 
     /**
@@ -18,6 +20,10 @@ class Node(override var hardware: Hardware,
      */
     override fun run(rq: Request) {
         if (this.state == State.ACTIVE) {
+            if (rq.id in processedRqs) {
+                println("Rq " + rq.id + " is already processed on node " + this.hardware.net.addr.addr)
+                return
+            }
             this.hardware.net.rqPool.add(rq)
             processRequest()
         } else {
@@ -32,8 +38,9 @@ class Node(override var hardware: Hardware,
      */
     fun processRequest() {
         var rq : Request = this.hardware.net.receive().poll()
-        while (rq != null) {
-            if (rq.addressee.equals(this.hardware.net.addr)) {
+        if (rq != null) {
+            println("Node " + this.hardware.net.addr.addr + " processing...")
+            if (rq.addressee.addr.equals(this.hardware.net.addr.addr) && this.hardware.storage != null) {
                 when (rq.type) {
                     // TODO: Learn Kotlin better and rewrite it properly. Check isNode before.
                     Request.Type.READ -> rq.timespent += this.hardware?.storage?.read(rq.size) ?: rq.timespent
