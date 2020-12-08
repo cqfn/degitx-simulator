@@ -13,11 +13,17 @@ class Router(override var hardware: Hardware,
 
     constructor(hw: Hardware): this(hw, State.ACTIVE)
 
+    var processedRqs = mutableSetOf<Int>()
+
     /**
      * Logic of software or hardware Router
      */
     override fun run(rq: Request) {
         if (this.state == State.ACTIVE) {
+            if (rq.id in processedRqs) {
+                println("Rq " + rq.id + " is already transmitted through Router " + this.hardware.net.addr.addr)
+                return
+            }
             this.hardware.net.rqPool.add(rq)
             processRequest()
         } else {
@@ -31,7 +37,7 @@ class Router(override var hardware: Hardware,
      */
     fun processRequest() {
         var rq : Request = this.hardware.net.receive().poll()
-        while (rq != null) redirect(rq)
+        if (rq != null) redirect(rq)
     }
 
     /**
