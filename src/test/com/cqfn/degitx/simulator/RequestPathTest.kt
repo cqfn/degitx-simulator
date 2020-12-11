@@ -1,5 +1,7 @@
 package com.cqfn.degitx.simulator
 
+import com.cqfn.degitx.simulator.entities.Address
+import com.cqfn.degitx.simulator.entities.Request
 import org.testng.Assert
 import org.testng.annotations.Test
 

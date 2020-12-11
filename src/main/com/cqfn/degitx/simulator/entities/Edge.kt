@@ -1,5 +1,6 @@
-package com.cqfn.degitx.simulator
+package com.cqfn.degitx.simulator.entities
 
+import com.cqfn.degitx.simulator.State
 import com.cqfn.degitx.simulator.randomengine.GUID
 
 /**

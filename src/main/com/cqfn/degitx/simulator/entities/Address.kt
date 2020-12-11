@@ -1,4 +1,4 @@
-package com.cqfn.degitx.simulator
+package com.cqfn.degitx.simulator.entities
 
 import java.util.Random
 import kotlin.streams.asSequence

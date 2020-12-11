@@ -1,5 +1,9 @@
-package com.cqfn.degitx.simulator
+package com.cqfn.degitx.simulator.entities.impl
 
+import com.cqfn.degitx.simulator.DsGraph
+import com.cqfn.degitx.simulator.entities.Address
+import com.cqfn.degitx.simulator.entities.Network
+import com.cqfn.degitx.simulator.entities.Request
 import java.util.*
 
 /**
@@ -14,7 +18,7 @@ class BasicNetwork(override var addr: Address,
 
     override fun send(addr: Address, rq: Request) {
         val graph = DsGraph
-        graph.node(addr).run(rq)
+        DsGraph.node(addr).run(rq)
     }
 
     override fun receive(): Queue<Request> {

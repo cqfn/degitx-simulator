@@ -1,4 +1,4 @@
-package com.cqfn.degitx.simulator
+package com.cqfn.degitx.simulator.entities
 
 /**
  * Stub for Request sent via Network to Address.
@@ -12,7 +12,7 @@ package com.cqfn.degitx.simulator
  * @see Storage
  */
 class Request {
-    constructor(sender: Address, addressee: Address, id: Int, size: Long, timespent: Long, type: Request.Type) {
+    constructor(sender: Address, addressee: Address, id: Int, size: Long, timespent: Long, type: Type) {
         this.addressee = addressee
         this.sender = sender
         this.id = id;
@@ -30,7 +30,7 @@ class Request {
     /**
      * Type of the request
      */
-    val type: Request.Type
+    val type: Type
 
     /**
      * Optional ID of request for cases when response is required.

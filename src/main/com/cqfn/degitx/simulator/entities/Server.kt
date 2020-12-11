@@ -1,4 +1,6 @@
-package com.cqfn.degitx.simulator
+package com.cqfn.degitx.simulator.entities
+
+import com.cqfn.degitx.simulator.State
 
 /**
  * Smart hardware router or Server (Node) representation.
