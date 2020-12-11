@@ -25,7 +25,6 @@ class GraphDataTest {
 
     @Test
     fun witeStaticGraph() {
-        // graph.generate(GraphGenerator.Settings())
         var grData = Gson().toJson(graph)
         println(grData)
     }
