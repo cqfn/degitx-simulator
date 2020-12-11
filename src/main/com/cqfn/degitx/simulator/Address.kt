@@ -18,6 +18,7 @@ class Address(address : String) {
      */
     val addr = address
 
+    //TODO: Change to call GUID
     companion object {
         val randomAddr = Random().ints(addressLength, 0, source.length)
                 .asSequence()

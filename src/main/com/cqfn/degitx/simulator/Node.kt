@@ -1,5 +1,7 @@
 package com.cqfn.degitx.simulator
 
+import com.cqfn.degitx.simulator.randomengine.GUID
+
 /**
  * Physical Server with GitHub repositories (Node) representation.
  * As part of global networks connected with other Nodes via Edges.
@@ -7,12 +9,18 @@ package com.cqfn.degitx.simulator
  * @see Graph
  * @see Edge
  */
-class Node(override var hardware: Hardware,
-           override var state: State) : Server {
+class Node(override var hardware: Hardware) : Server {
+
+    override var id = GUID().guid
+
+    override var state = State.ACTIVE
 
     var processedRqs = mutableSetOf<Int>()
 
-    constructor(hw: Hardware): this(hw, State.ACTIVE)
+    constructor(id: String, hw: Hardware, state: State): this(hw) {
+        this.id = id
+        this.state = state
+    }
 
     /**
      * Logic of software GitHub Node

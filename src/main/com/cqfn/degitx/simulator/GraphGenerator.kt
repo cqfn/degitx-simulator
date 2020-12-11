@@ -1,5 +1,6 @@
 package com.cqfn.degitx.simulator
 
+import com.cqfn.degitx.simulator.randomengine.GUID
 import java.util.*
 
 /**
@@ -26,13 +27,13 @@ class GraphGenerator{
      */
     fun generate(settings: Settings) : DsGraph {
         for (i in 1..settings.nodeNumber) {
-            var node = Node(NodeHardware(SATAStorage(),
+            var node = Node(GUID().guid, NodeHardware(SATAStorage(),
                     BasicNetwork(Address("node"+i), LinkedList(), 1L)),
                     State.ACTIVE)
             nodes = nodes.plus(node)
         }
         for (i in 1..settings.routersNumber) {
-            var router = Router(NodeHardware(null,
+            var router = Router(GUID().guid, NodeHardware(null,
                     BasicNetwork(Address("node"+(settings.nodeNumber+i).toString()), LinkedList(), 1L)),
                     State.ACTIVE)
             nodes = nodes.plus(router)
