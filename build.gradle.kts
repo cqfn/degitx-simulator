@@ -19,6 +19,10 @@ repositories {
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion")
+    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
+    implementation("com.google.code.gson:gson:2.8.6")
+
+    testImplementation("org.mockito:mockito-core:2.+")
     testImplementation("org.testng:testng-6.14.3")
 }
 

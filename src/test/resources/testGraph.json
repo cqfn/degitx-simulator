@@ -1,0 +1,23 @@
+{
+  "graph": {"nodes":[
+    {
+      "id": "node1",
+      "state": "A",
+      "hw": {
+        "storage": {
+          "w": 10,
+          "r": 1000
+        },
+        "net": {
+          "addr": "address",
+          "throughput": 20
+        }
+      }
+    }
+  ],"edges":[{
+    "head": "node2",
+    "tail": "node1"
+  }
+  ]
+  }
+}
