@@ -18,12 +18,12 @@ data class Edge(
 )
 
 data class Node(
-    val hw: Hw,
-    val id: String,
-    val state: String
+        val hardware: Hardware,
+        val id: String,
+        val state: String
 )
 
-data class Hw(
+data class Hardware(
     val net: Net,
     val storage: Storage
 )
