@@ -6,6 +6,11 @@ package com.cqfn.degitx.simulator
  */
 interface Server {
     /**
+     * Unique ID of the Server
+     */
+    var id: String
+
+    /**
      * Storage if any and one network adapter
      */
     var hardware: Hardware

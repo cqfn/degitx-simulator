@@ -1,7 +1,6 @@
 package com.cqfn.degitx.simulator
 
 import org.testng.Assert
-import org.testng.annotations.BeforeTest
 import org.testng.annotations.Test
 
 
@@ -9,13 +8,10 @@ class RequestPathTest {
 
     private var graph = GraphGenerator()
 
-    @BeforeTest
-    fun setUp() {
-        graph.generate(GraphGenerator.Settings())
-    }
-
     @Test
     fun requestGoesToTarget() {
+        graph.generate(GraphGenerator.Settings())
+
         var rq = Request(Address("node1"), Address("node2"),
                 1, 123L, 0L, Request.Type.WRITE)
         graph.nodes[1].run(rq)

@@ -2,12 +2,18 @@ package com.cqfn.degitx.simulator.data
 
 import com.cqfn.degitx.simulator.GraphGenerator
 import com.google.gson.Gson
+import org.testng.annotations.BeforeSuite
 import org.testng.annotations.Test
 import java.io.File
 
 class GraphDataTest {
 
     var graph = GraphGenerator()
+
+    @BeforeSuite
+    fun setUp() {
+        graph.generate(GraphGenerator.Settings())
+    }
 
     @Test
     fun testTestToString() {
@@ -19,7 +25,6 @@ class GraphDataTest {
 
     @Test
     fun witeStaticGraph() {
-        graph.generate(GraphGenerator.Settings())
         var grData = Gson().toJson(graph)
         println(grData)
     }

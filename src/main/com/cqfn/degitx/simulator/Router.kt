@@ -1,5 +1,7 @@
 package com.cqfn.degitx.simulator
 
+import com.cqfn.degitx.simulator.randomengine.GUID
+
 /**
  * Smart Router representation.
  * As part of global networks connected with other Servers via Edges.
@@ -8,12 +10,19 @@ package com.cqfn.degitx.simulator
  * @see Graph
  * @see Edge
  */
-class Router(override var hardware: Hardware,
-             override var state: State) : Server {
+class Router(override var hardware: Hardware) : Server {
 
-    constructor(hw: Hardware): this(hw, State.ACTIVE)
+    override var id = GUID().guid
+
+    override var state = State.ACTIVE
 
     var processedRqs = mutableSetOf<Int>()
+
+    constructor(id: String, hw: Hardware, state: State): this(hw) {
+        this.id = id
+        this.state = state
+    }
+
 
     /**
      * Logic of software or hardware Router
