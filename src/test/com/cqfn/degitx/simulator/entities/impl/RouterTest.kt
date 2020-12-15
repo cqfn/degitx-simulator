@@ -1,5 +1,7 @@
-package com.cqfn.degitx.simulator
+package com.cqfn.degitx.simulator.entities.impl
 
+import com.cqfn.degitx.simulator.DsGraph
+import com.cqfn.degitx.simulator.GraphGenerator
 import org.testng.annotations.Test
 
 import org.testng.Assert.*

@@ -1,4 +1,4 @@
-package com.cqfn.degitx.simulator
+package com.cqfn.degitx.simulator.entities
 
 import org.testng.annotations.Test
 

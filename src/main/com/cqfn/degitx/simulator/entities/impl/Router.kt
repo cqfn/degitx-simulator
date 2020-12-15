@@ -1,5 +1,11 @@
-package com.cqfn.degitx.simulator
+package com.cqfn.degitx.simulator.entities.impl
 
+import com.cqfn.degitx.simulator.DsGraph
+import com.cqfn.degitx.simulator.State
+import com.cqfn.degitx.simulator.entities.Edge
+import com.cqfn.degitx.simulator.entities.Hardware
+import com.cqfn.degitx.simulator.entities.Request
+import com.cqfn.degitx.simulator.entities.Server
 import com.cqfn.degitx.simulator.randomengine.GUID
 
 /**
@@ -55,7 +61,7 @@ class Router(override var hardware: Hardware) : Server {
      */
     fun redirect(rq: Request) {
         var gr = DsGraph
-        var edges : List<Edge> = gr.outgoingEdges(this)
+        var edges : List<Edge> = DsGraph.outgoingEdges(this)
         // TODO: Increment rq's timespent. See issue #19
         for (edge in edges) edge.head.run(rq)
     }

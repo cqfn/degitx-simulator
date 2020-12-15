@@ -1,5 +1,8 @@
 package com.cqfn.degitx.simulator
 
+import com.cqfn.degitx.simulator.entities.Edge
+import com.cqfn.degitx.simulator.entities.Server
+
 /**
  * Graph of physical network.
  * Keeps knowledge about all network, but emulates route tables for Nodes and Routers.

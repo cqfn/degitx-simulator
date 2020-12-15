@@ -1,5 +1,8 @@
 package com.cqfn.degitx.simulator
 
+import com.cqfn.degitx.simulator.entities.Address
+import com.cqfn.degitx.simulator.entities.Edge
+import com.cqfn.degitx.simulator.entities.Server
 import java.util.*
 
 /**

@@ -1,4 +1,9 @@
-package com.cqfn.degitx.simulator
+package com.cqfn.degitx.simulator.entities.impl
+
+import com.cqfn.degitx.simulator.entities.Address
+import com.cqfn.degitx.simulator.entities.Hardware
+import com.cqfn.degitx.simulator.entities.Network
+import com.cqfn.degitx.simulator.entities.Storage
 
 /**
  * Represents Server Hardware, which includes not-null storage and Network adapter.

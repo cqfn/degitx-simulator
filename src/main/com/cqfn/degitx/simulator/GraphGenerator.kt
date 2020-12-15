@@ -1,5 +1,7 @@
 package com.cqfn.degitx.simulator
 
+import com.cqfn.degitx.simulator.entities.*
+import com.cqfn.degitx.simulator.entities.impl.*
 import com.cqfn.degitx.simulator.randomengine.GUID
 import java.util.*
 
